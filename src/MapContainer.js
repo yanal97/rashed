@@ -19,22 +19,26 @@ class Map extends React.Component {
       fetch("https://api.myjson.com/bins/16vrrc").then(response => response.json()
       ).then( async body => {
           this.path = body;
+          console.log("here1");
           this.setState({rendered: true})
       }).catch(err => alert(err))  
       //End Fetching JSON
     }
-
+    
     execute = () => {
-
+      console.log("here2");
       console.log("path --> " ,this.path)
     }
 
-    componentDidMount() {
 
+    componentDidMount() {
+      
       this.getData();
+      if (this.path != null){
       console.log("check ", this.state.rendered);
       this.execute();
-    
+      console.log("here3");
+      }
     }
 
     render = () => {
@@ -43,9 +47,10 @@ class Map extends React.Component {
           defaultZoom={16}
           defaultCenter={{ lat: 18.559008, lng: -68.388881 }}
           >
-            
-           <Polyline path={this.path} options={{ strokeColor: "#FF0000 " }} />
-           <Marker position={this.path[this.path.length-1]} />
+           { !this.path ? console.log("wait") : <Polyline path={this.path} options={{ strokeColor: "#FF0000 " }} />}
+           { !this.path ? console.log("wait") : <Marker position={this.path[this.path.length-1]} />}
+           
+           
 
         </GoogleMap>
 
