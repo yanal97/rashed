@@ -39,6 +39,7 @@ class Map extends React.Component {
       this.execute();
       console.log("here3");
       }
+      //test
     }
 
     render = () => {
